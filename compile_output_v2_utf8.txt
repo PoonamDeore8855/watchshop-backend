@@ -1,0 +1,56 @@
+﻿[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< com.watchshop:watchshop-backend >-------------------
+[INFO] Building watchshop-backend 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ watchshop-backend ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 3 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ watchshop-backend ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 74 source files with javac [debug parameters release 17] to target\classes
+.\mvnw.cmd : WARNING: 
+A terminally 
+deprecated method in 
+sun.misc.Unsafe has 
+been called
+At line:1 char:1
++ .\mvnw.cmd compile 
+> 
+compile_output_v2.txt 
+2>&1
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (WARNING: A   
+  term...has been     
+called:String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+WARNING: sun.misc.Unsa
+fe::objectFieldOffset 
+has been called by 
+lombok.permit.Permit
+WARNING: Please 
+consider reporting 
+this to the 
+maintainers of class 
+lombok.permit.Permit
+WARNING: sun.misc.Unsa
+fe::objectFieldOffset 
+will be removed in a 
+future release
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  10.073 s
+[INFO] Finished at: 2026-02-06T11:03:23+05:30
+[INFO] ------------------------------------------------------------------------

@@ -1,0 +1,59 @@
+﻿[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< com.watchshop:watchshop-backend >-------------------
+[INFO] Building watchshop-backend 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-clean-plugin/3.4.0/maven-clean-plugin-3.4.0.pom
+Progress (1): 797 B
+Progress (1): 1.9 kB
+Progress (1): 4.5 kB
+Progress (1): 5.5 kB
+                    
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-clean-plugin/3.4.0/maven-clean-plugin-3.4.0.pom (5.5 kB at 6.3 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-clean-plugin/3.4.0/maven-clean-plugin-3.4.0.jar
+Progress (1): 0.9/36 kB
+Progress (1): 2.3/36 kB
+Progress (1): 3.7/36 kB
+Progress (1): 5.0/36 kB
+Progress (1): 6.4/36 kB
+Progress (1): 7.8/36 kB
+Progress (1): 9.1/36 kB
+Progress (1): 11/36 kB 
+Progress (1): 12/36 kB
+Progress (1): 13/36 kB
+Progress (1): 15/36 kB
+Progress (1): 16/36 kB
+Progress (1): 17/36 kB
+Progress (1): 19/36 kB
+Progress (1): 20/36 kB
+Progress (1): 21/36 kB
+Progress (1): 23/36 kB
+Progress (1): 24/36 kB
+Progress (1): 26/36 kB
+Progress (1): 27/36 kB
+Progress (1): 28/36 kB
+Progress (1): 30/36 kB
+Progress (1): 31/36 kB
+Progress (1): 32/36 kB
+Progress (1): 34/36 kB
+Progress (1): 35/36 kB
+Progress (1): 36 kB   
+                   
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-clean-plugin/3.4.0/maven-clean-plugin-3.4.0.jar (36 kB at 283 kB/s)
+[INFO] 
+[INFO] --- clean:3.4.0:clean (default-clean) @ watchshop-backend ---
+[INFO] Deleting C:\Users\Dell\OneDrive\Desktop\watch-shop\watchshop-backend\target
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.561 s
+[INFO] Finished at: 2026-02-06T10:42:06+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-clean-plugin:3.4.0:clean (default-clean) on project watchshop-backend: Failed to clean project: Failed to delete C:\Users\Dell\OneDrive\Desktop\watch-shop\watchshop-backend\target\test-classes\com\watchshop\watchshop_backend -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

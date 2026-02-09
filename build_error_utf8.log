@@ -1,0 +1,80 @@
+﻿[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< com.watchshop:watchshop-backend >-------------------
+[INFO] Building watchshop-backend 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ watchshop-backend ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 3 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ watchshop-backend ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 64 source files with javac [debug parameters release 17] to target\classes
+.\mvnw : WARNING: A 
+terminally deprecated 
+method in 
+sun.misc.Unsafe has 
+been called
+At line:1 char:1
++ .\mvnw compile 
+-DskipTests > 
+build_error.log 2>&1
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (WARNING: A   
+  term...has been     
+called:String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+WARNING: sun.misc.Unsa
+fe::objectFieldOffset 
+has been called by 
+lombok.permit.Permit
+WARNING: Please 
+consider reporting 
+this to the 
+maintainers of class 
+lombok.permit.Permit
+WARNING: sun.misc.Unsa
+fe::objectFieldOffset 
+will be removed in a 
+future release
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/Dell/OneDrive/Desktop/watch-shop/watchshop-backend/src/main/java/com/watchshop/watchshop_backend/controller/AdminController.java:[93,86] cannot find symbol
+  symbol:   class Product
+  location: class com.watchshop.watchshop_backend.controller.AdminController
+[ERROR] /C:/Users/Dell/OneDrive/Desktop/watch-shop/watchshop-backend/src/main/java/com/watchshop/watchshop_backend/controller/AdminController.java:[93,27] cannot find symbol
+  symbol:   class Product
+  location: class com.watchshop.watchshop_backend.controller.AdminController
+[INFO] 2 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.098 s
+[INFO] Finished at: 2026-02-05T10:37:55+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.1:compile (default-compile) on project watchshop-backend: Compilation failure: Compilation failure: 
+[ERROR] /C:/Users/Dell/OneDrive/Desktop/watch-shop/watchshop-backend/src/main/java/com/watchshop/watchshop_backend/controller/AdminController.java:[93,86] cannot find symbol
+[ERROR]   symbol:   class Product
+[ERROR]   location: class com.watchshop.watchshop_backend.controller.AdminController
+[ERROR] /C:/Users/Dell/OneDrive/Desktop/watch-shop/watchshop-backend/src/main/java/com/watchshop/watchshop_backend/controller/AdminController.java:[93,27] cannot find symbol
+[ERROR]   symbol:   class Product
+[ERROR]   location: class com.watchshop.watchshop_backend.controller.AdminController
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

@@ -1,0 +1,50 @@
+﻿Progress (1): 831/906 kB
+Progress (1): 847/906 kB
+Progress (1): 864/906 kB
+Progress (1): 880/906 kB
+Progress (1): 897/906 kB
+Progress (1): 906 kB    
+                    
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/httpcomponents/core5/httpcore5/5.3.1/httpcore5-5.3.1.jar (906 kB at 280 kB/s)
+[INFO] Attaching agents: []
+Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.4.1)
+
+2026-02-06T11:04:30.788+05:30  INFO 5992 --- [watchshop-backend] [           main] c.w.w.WatchshopBackendApplication        : Starting WatchshopBackendApplication using Java 25.0.1 with PID 5992 (C:\Users\Dell\OneDrive\Desktop\watch-shop\watchshop-backend\target\classes started by Dell in C:\Users\Dell\OneDrive\Desktop\watch-shop\watchshop-backend)
+2026-02-06T11:04:30.797+05:30  INFO 5992 --- [watchshop-backend] [           main] c.w.w.WatchshopBackendApplication        : No active profile set, falling back to 1 default profile: "default"
+2026-02-06T11:04:32.519+05:30  INFO 5992 --- [watchshop-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-06T11:04:32.682+05:30  INFO 5992 --- [watchshop-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 142 ms. Found 9 JPA repository interfaces.
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.apache.tomcat.jni.Library in an unnamed module (file:/C:/Users/Dell/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.34/tomcat-embed-core-10.1.34.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+2026-02-06T11:04:33.946+05:30  INFO 5992 --- [watchshop-backend] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9090 (http)
+2026-02-06T11:04:33.979+05:30  INFO 5992 --- [watchshop-backend] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-06T11:04:33.979+05:30  INFO 5992 --- [watchshop-backend] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2026-02-06T11:04:34.118+05:30  INFO 5992 --- [watchshop-backend] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-06T11:04:34.119+05:30  INFO 5992 --- [watchshop-backend] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3205 ms
+Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+2026-02-06T11:04:34.609+05:30  INFO 5992 --- [watchshop-backend] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-06T11:04:34.736+05:30  INFO 5992 --- [watchshop-backend] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.4.Final
+2026-02-06T11:04:34.802+05:30  INFO 5992 --- [watchshop-backend] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-06T11:04:35.337+05:30  INFO 5992 --- [watchshop-backend] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-06T11:04:35.412+05:30  INFO 5992 --- [watchshop-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-06T11:04:36.292+05:30  INFO 5992 --- [watchshop-backend] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@598778cc
+2026-02-06T11:04:36.296+05:30  INFO 5992 --- [watchshop-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-06T11:04:36.603+05:30  INFO 5992 --- [watchshop-backend] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
