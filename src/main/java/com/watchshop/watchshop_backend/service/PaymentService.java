@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.HashMap;
 
 @Service
 public class PaymentService {
@@ -40,6 +41,21 @@ public class PaymentService {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public Map<String, Object> getPaymentDetails(String paymentId) {
+        try {
+            com.razorpay.Payment payment = razorpayClient.payments.fetch(paymentId);
+            Map<String, Object> details = new HashMap<>();
+            details.put("method", payment.get("method"));
+            details.put("status", payment.get("status"));
+            details.put("amount", payment.get("amount"));
+            details.put("currency", payment.get("currency"));
+            return details;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }
