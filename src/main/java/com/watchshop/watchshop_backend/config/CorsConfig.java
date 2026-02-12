@@ -26,6 +26,7 @@ public class CorsConfig {
         ));
 
         config.setAllowedHeaders(List.of("*"));
+        config.setExposedHeaders(List.of("x-rtb-fingerprint-id"));
         config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source =

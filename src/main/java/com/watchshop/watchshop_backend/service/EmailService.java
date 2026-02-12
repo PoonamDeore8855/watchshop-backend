@@ -1,6 +1,7 @@
 package com.watchshop.watchshop_backend.service;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.watchshop.watchshop_backend.entity.Order;
@@ -14,11 +15,11 @@ public class EmailService {
         this.mailSender = mailSender;
     }
 
-    public String sendOrderConfirmation(String toEmail, Order order) {
+    @Async
+    public void sendOrderConfirmation(String toEmail, Order order) {
         if (toEmail == null || toEmail.isBlank() || !toEmail.contains("@")) {
-            String err = "Invalid email address: " + toEmail;
-            System.err.println("❌ " + err + ". Skipping email dispatch.");
-            return err;
+            System.err.println("❌ Invalid email address: " + toEmail + ". Skipping email dispatch.");
+            return;
         }
 
         System.out.println("📧 Attempting to send order confirmation to: " + toEmail);
@@ -45,24 +46,11 @@ public class EmailService {
         try {
             mailSender.send(message);
             System.out.println("✅ Order confirmation email sent successfully to " + toEmail);
-            return null;
         } catch (org.springframework.mail.MailException e) {
             String errorMsg = e.getMessage();
             System.err.println("❌ Mail delivery failed for " + toEmail + ": " + errorMsg);
-            
-            String tip = "";
-            if (errorMsg.contains("550")) {
-                tip = " Verify if the email address exists.";
-                System.err.println("💡 TIP: Verify if the email address exists and the SMTP server is configured correctly.");
-            } else if (errorMsg.contains("552") || errorMsg.contains("5.2.2")) {
-                tip = " Recipient inbox is full (552).";
-                System.err.println("💡 TIP: The recipient's inbox is full (Error 552 5.2.2). Inform them to clear storage and then retry.");
-            }
-            return "Email failed: " + errorMsg + tip;
         } catch (Exception e) {
-            String err = "Unexpected error during email dispatch: " + e.getMessage();
-            System.err.println("❌ " + err);
-            return err;
+            System.err.println("❌ Unexpected error during email dispatch: " + e.getMessage());
         }
     }
 }

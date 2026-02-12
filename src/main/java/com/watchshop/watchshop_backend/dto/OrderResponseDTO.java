@@ -14,6 +14,9 @@ public class OrderResponseDTO {
     private String promoCode;
     private java.util.List<OrderItemResponseDTO> items;
     private String emailError;
+    private String razorpayOrderId;
+    private Integer razorpayAmount;
+    private String razorpayCurrency;
 
     // ✅ EXACT CONSTRUCTOR (THIS FIXES ERROR)
     public OrderResponseDTO(
@@ -38,6 +41,28 @@ public class OrderResponseDTO {
         this.promoCode = promoCode;
         this.items = items;
         this.emailError = emailError;
+    }
+    
+    // Additional constructor for Razorpay
+    public OrderResponseDTO(
+            Long orderId,
+            Double totalAmount,
+            Long userId,
+            String email,
+            String status,
+            LocalDateTime orderDate,
+            Double discountAmount,
+            String promoCode,
+            java.util.List<OrderItemResponseDTO> items,
+            String emailError,
+            String razorpayOrderId,
+            Integer razorpayAmount,
+            String razorpayCurrency
+    ) {
+        this(orderId, totalAmount, userId, email, status, orderDate, discountAmount, promoCode, items, emailError);
+        this.razorpayOrderId = razorpayOrderId;
+        this.razorpayAmount = razorpayAmount;
+        this.razorpayCurrency = razorpayCurrency;
     }
 
     // ===== GETTERS =====
@@ -79,5 +104,17 @@ public class OrderResponseDTO {
 
     public String getEmailError() {
         return emailError;
+    }
+
+    public String getRazorpayOrderId() {
+        return razorpayOrderId;
+    }
+
+    public Integer getRazorpayAmount() {
+        return razorpayAmount;
+    }
+
+    public String getRazorpayCurrency() {
+        return razorpayCurrency;
     }
 }

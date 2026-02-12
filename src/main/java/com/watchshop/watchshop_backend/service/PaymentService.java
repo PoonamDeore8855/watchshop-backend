@@ -5,7 +5,12 @@ import com.razorpay.Utils;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import com.watchshop.watchshop_backend.entity.Order;
+import com.watchshop.watchshop_backend.entity.Transaction;
+import com.watchshop.watchshop_backend.repository.OrderRepository;
+import com.watchshop.watchshop_backend.repository.UserRepository;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -15,6 +20,12 @@ public class PaymentService {
 
     @Autowired
     private RazorpayClient razorpayClient;
+
+    @Autowired
+    private TransactionService transactionService;
+
+    @Autowired
+    private InvoiceService invoiceService;
 
     @Value("${razorpay.key.secret}")
     private String keySecret;
@@ -56,6 +67,43 @@ public class PaymentService {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    /**
+     * Handle non-critical post-payment tasks asynchronously
+     */
+    @Async
+    public void asyncPostPaymentProcessing(Order order, String razorpayOrderId, String razorpayPaymentId) {
+        try {
+            // 1. SAVE TRANSACTION
+            System.out.println("Async processing transaction for Order ID: " + order.getId());
+            Map<String, Object> paymentDetails = getPaymentDetails(razorpayPaymentId);
+            String method = "UNKNOWN";
+            
+            if (paymentDetails != null && paymentDetails.containsKey("method")) {
+                method = (String) paymentDetails.get("method");
+            }
+            
+            Transaction transaction = new Transaction(
+                order.getId(),
+                order.getUser(),
+                order.getTotalAmount(),
+                "SUCCESS",
+                method,
+                razorpayPaymentId,
+                razorpayOrderId
+            );
+            
+            transactionService.saveTransaction(transaction);
+            System.out.println("Successfully saved transaction in background for Order ID: " + order.getId());
+
+            // 2. AUTO-GENERATE INVOICE
+            invoiceService.generateInvoice(order);
+            
+        } catch (Exception e) {
+            System.err.println("Async post-payment error for Order ID " + order.getId() + ": " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }

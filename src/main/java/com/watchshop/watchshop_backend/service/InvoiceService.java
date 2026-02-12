@@ -14,6 +14,7 @@ import com.watchshop.watchshop_backend.entity.OrderItem;
 import com.watchshop.watchshop_backend.repository.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -37,11 +38,12 @@ public class InvoiceService {
     /**
      * Generate invoice for an order
      */
-    public Invoice generateInvoice(Order order) throws Exception {
+    @Async
+    public void generateInvoice(Order order) throws Exception {
         // Check if invoice already exists
         Optional<Invoice> existing = invoiceRepository.findByOrderId(order.getId());
         if (existing.isPresent()) {
-            return existing.get();
+            return;
         }
 
         // Create invoice entity
@@ -70,7 +72,7 @@ public class InvoiceService {
         String pdfPath = createPDF(invoice);
         invoice.setPdfPath(pdfPath);
 
-        return invoiceRepository.save(invoice);
+        invoiceRepository.save(invoice);
     }
 
     /**

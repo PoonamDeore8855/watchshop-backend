@@ -7,6 +7,7 @@ public class CheckoutRequestDTO {
     private List<CartItemDTO> items;
     private Double discountAmount;
     private String promoCode;
+    private String paymentMethod; // ONLINE or COD
 
     public List<CartItemDTO> getItems() {
         return items;
@@ -30,5 +31,13 @@ public class CheckoutRequestDTO {
 
     public void setPromoCode(String promoCode) {
         this.promoCode = promoCode;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 }

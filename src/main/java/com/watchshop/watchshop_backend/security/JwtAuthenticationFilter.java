@@ -42,7 +42,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         String authHeader = request.getHeader("Authorization");
 
-        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            String path = request.getServletPath();
+            if (path.startsWith("/api/checkout") || path.startsWith("/api/payment")) {
+                System.err.println("⚠️ JWT Filter - Authorization header missing or malformed for path: " + path);
+            }
+        } else {
             String token = authHeader.substring(7);
             try {
                 String email = jwtUtil.extractUsername(token);

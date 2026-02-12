@@ -79,42 +79,8 @@ public class PaymentController {
                     order.setStatus("CONFIRMED");
                     orderRepository.save(order);
                     
-                    // ✅ SAVE TRANSACTION
-                    try {
-                        System.out.println("Processing transaction for Order ID: " + backendOrderId);
-                        Map<String, Object> paymentDetails = paymentService.getPaymentDetails(razorpayPaymentId);
-                        String method = "UNKNOWN";
-                        
-                        if (paymentDetails != null && paymentDetails.containsKey("method")) {
-                            method = (String) paymentDetails.get("method");
-                        } else {
-                            System.out.println("Warning: Payment details from Razorpay were null or did not contain method. Using 'UNKNOWN'.");
-                        }
-                        
-                        Transaction transaction = new Transaction(
-                            backendOrderId,
-                            order.getUser(),
-                            order.getTotalAmount(),
-                            "SUCCESS",
-                            method,
-                            razorpayPaymentId,
-                            razorpayOrderId
-                        );
-                        
-                        Transaction saved = transactionService.saveTransaction(transaction);
-                        System.out.println("Successfully saved transaction. ID: " + saved.getId() + " for User: " + (order.getUser() != null ? order.getUser().getEmail() : "NULL"));
-                    } catch (Exception e) {
-                        System.err.println("CRITICAL: Failed to save transaction record: " + e.getMessage());
-                        e.printStackTrace();
-                    }
-                    
-                    // ✅ AUTO-GENERATE INVOICE
-                    try {
-                        invoiceService.generateInvoice(order);
-                    } catch (Exception e) {
-                        // Log error but don't fail payment verification
-                        System.err.println("Failed to generate invoice: " + e.getMessage());
-                    }
+                    // ✅ ASYNC BACKGROUND PROCESSING (Transaction & Invoice)
+                    paymentService.asyncPostPaymentProcessing(order, razorpayOrderId, razorpayPaymentId);
                     
                     return ResponseEntity.ok(Map.of(
                         "success", true,

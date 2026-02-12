@@ -2,6 +2,7 @@ package com.watchshop.watchshop_backend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -38,6 +39,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/products/**").permitAll()
                 .requestMatchers("/api/image/**").permitAll()
                 .requestMatchers("/api/coupons/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/reviews/product/**").permitAll()
                 .requestMatchers("/api/checkout/**").authenticated()
                 .requestMatchers("/api/payment/**").authenticated()
                 .requestMatchers("/api/orders/**").authenticated()
@@ -46,9 +48,10 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
             )
             .exceptionHandling(ex -> ex.authenticationEntryPoint((request, response, authException) -> {
-                System.err.println("Authentication Error: " + authException.getMessage());
+                System.err.println("🔒 Security Error: " + authException.getMessage() + " for path: " + request.getServletPath());
                 response.setStatus(401);
-                response.getWriter().write("Unauthorized: " + authException.getMessage());
+                response.setContentType("application/json");
+                response.getWriter().write("{\"message\": \"Unauthorized: " + authException.getMessage() + "\"}");
             }))
             .headers(headers -> headers
                 .addHeaderWriter(new org.springframework.security.web.header.writers.StaticHeadersWriter("Cross-Origin-Opener-Policy", "same-origin-allow-popups"))

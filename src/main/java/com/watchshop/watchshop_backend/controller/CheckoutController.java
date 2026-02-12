@@ -32,19 +32,35 @@ public class CheckoutController {
             @RequestBody CheckoutRequestDTO request,
             Authentication authentication
     ) {
+        long startTime = System.currentTimeMillis();
         try {
             Order order = checkoutService.placeOrder(request, authentication);
-            return ResponseEntity.ok(toDTO(order));
+            long orderSavedTime = System.currentTimeMillis();
+            System.out.println("⏱️ Order Placement took: " + (orderSavedTime - startTime) + "ms");
+            
+            com.razorpay.Order rzpOrder = null;
+            if ("ONLINE".equalsIgnoreCase(request.getPaymentMethod())) {
+                rzpOrder = checkoutService.createRazorpayOrder(order);
+                long rzpCreatedTime = System.currentTimeMillis();
+                System.out.println("✅ Unified: Created Razorpay Order " + rzpOrder.get("id").toString() + " in " + (rzpCreatedTime - orderSavedTime) + "ms");
+            }
+            
+            System.out.println("🚀 Total Processing Time: " + (System.currentTimeMillis() - startTime) + "ms");
+            return ResponseEntity.ok(toDTO(order, rzpOrder));
         } catch (Exception e) {
             e.printStackTrace();
-            // Return 400 so client knows it's a data issue (e.g. stale cart)
-            return ResponseEntity.status(400).body("Order failed: " + e.getMessage());
+            java.util.Map<String, String> error = new java.util.HashMap<>();
+            error.put("message", e.getMessage());
+            return ResponseEntity.status(400).body(error);
         }
     }
 
     // 🔥 THIS METHOD WAS MISSING
     private OrderResponseDTO toDTO(Order order) {
-        
+        return toDTO(order, null);
+    }
+
+    private OrderResponseDTO toDTO(Order order, com.razorpay.Order rzpOrder) {
         java.util.List<com.watchshop.watchshop_backend.dto.OrderItemResponseDTO> items = order.getOrderItems().stream()
                  .map(item -> new com.watchshop.watchshop_backend.dto.OrderItemResponseDTO(
                          item.getId(),
@@ -55,6 +71,24 @@ public class CheckoutController {
                          item.getProduct().getImageUrl()
                  ))
                  .collect(java.util.stream.Collectors.toList());
+
+        if (rzpOrder != null) {
+            return new OrderResponseDTO(
+                    order.getId(),
+                    order.getTotalAmount(),
+                    order.getUser().getId(),
+                    order.getUser().getEmail(),
+                    order.getStatus(),
+                    order.getOrderDate(),
+                    order.getDiscountAmount(),
+                    order.getPromoCode(),
+                    items,
+                    order.getEmailError(),
+                    rzpOrder.get("id") != null ? rzpOrder.get("id").toString() : null,
+                    rzpOrder.get("amount") != null ? ((Number) rzpOrder.get("amount")).intValue() : 0,
+                    rzpOrder.get("currency") != null ? rzpOrder.get("currency").toString() : "INR"
+            );
+        }
 
         return new OrderResponseDTO(
                 order.getId(),
