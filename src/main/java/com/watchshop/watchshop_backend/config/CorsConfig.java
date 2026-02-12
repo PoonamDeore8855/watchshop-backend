@@ -18,7 +18,7 @@ public class CorsConfig {
         config.setAllowedOrigins(List.of(
                 "http://localhost:5173",
                 "http://localhost:5174",
-                "https://watch-shop-kejr.vercel.app"
+                "https://watchshops.vercel.app"
         ));
 
         config.setAllowedMethods(List.of(
